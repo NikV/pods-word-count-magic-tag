@@ -6,8 +6,10 @@
 function pods_more_stuff_things_more($code, $template_name,  $pods) {
 
 
-		$content      = str_word_count( get_post_field( 'post_content', $pods->ID() ));
-		$code         = str_replace( '{@post_count}', $content, $code );
+		$content = str_word_count( get_post_field( 'post_content', $pods->ID() ) );
+		if (get_post_field( 'post_content', $pods->ID() ) !== '') {
+			$code = str_replace( '{@word_count}', $content, $code );
+		}
 
 		return $code;
 
